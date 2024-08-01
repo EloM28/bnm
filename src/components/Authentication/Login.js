@@ -30,6 +30,7 @@ const Login = () => {
                 if (response) {
                     const data = await response.json();
                     if (data.message === "Success") {
+                        localStorage.setItem('token', data.token)
                         if (data.role === 1) {
                             setLoading(false)
                             router.push("/")
