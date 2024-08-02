@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react'
+import Link from 'next/link';
 
 const ForgetPassword = () => {
     const { useRouter } = require('next/navigation');
@@ -8,7 +9,7 @@ const ForgetPassword = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
 
-    const Loginbutton = async (e) => {
+    const Forgetbutton = async (e) => {
         e.preventDefault();
         try {
             setLoading(true)
@@ -26,18 +27,7 @@ const ForgetPassword = () => {
                 if (response) {
                     const data = await response.json();
                     if (data.message === "Success") {
-                        if (data.role === 1) {
-                            setLoading(false)
-                            router.push("/")
-                        }
-                        else if (data.role === 2) {
-                            setLoading(false)
-                            router.push("/")
-                        }
-                        else {
-                            setLoading(false)
-                            router.push("/")
-                        }
+                        router.push('/waitchngpass')
                     }
                     else {
                         setLoading(false)
@@ -75,12 +65,13 @@ const ForgetPassword = () => {
                         <span className="text-red-600"> {errorMail} </span>
                         {
                             loading ?
-                                <button type="submit" onClick={Loginbutton} class="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">Sending...</button>
+                                <button type="submit" onClick={Forgetbutton} class="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">Sending...</button>
                                 :
-                                <button type="submit" onClick={Loginbutton} class="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">Login</button>
+                                <button type="submit" onClick={Forgetbutton} class="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">Login</button>
                         }
-                        <a href='/authentication/login'>Retour sur Login</a>
-                        {/* <button type="submit" class="w-full mt-6 mb-3 bg-indigo-100 rounded-lg px-4 py-2 text-lg text-gray-800 tracking-wide font-semibold font-sans">Login</button> */}
+                        <div className="pt-6 text-base leading-6  sm:text-sm sm:leading-7">
+                            <p>Returner sur   <Link href="/authentication/login" className="text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">Log in !</Link></p>
+                        </div>
                     </form>
                 </div>
             </div>
