@@ -7,23 +7,11 @@ export default function Home() {
   console.log('object', user)
   const session = user?.session;
   console.log('obj', session)
-  useEffect(() => {
-    if (session) {
-      if (session.user !== session) {
-        setUser(session.user);
-        setEmail(session.email);
-        setName(session.nom);
-      } else {
-        console.log('sess')
-      }
-    }
-    else {
-      console.log('sss')
-    }
-  }, []);
   return (
     <>
-      The Home Page
+      {session.role == 1 && 'The Home Page'}
+      {session.role == 2 && 'The Home Page2'}
+      {/* {session.role == 3 && 'The Home Page3'} */}
     </>
   );
 }
