@@ -11,7 +11,7 @@ export default function Home() {
     <>
       {session.role == 1 && 'The Home Page'}
       {session.role == 2 && 'The Home Page2'}
-      {/* {session.role == 3 && 'The Home Page3'} */}
+      {session.role == 3 && 'The Home Page3'}
     </>
   );
 }
