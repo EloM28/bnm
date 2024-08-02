@@ -12,6 +12,7 @@ function SessionProvider(props) {
             try {
                 if (token) {
                     const decoded = jwt.decode(token);
+                    console.log('decoded session', decoded)
                     return setSession(decoded);
                 } else {
                     return setSession('unlogged');
@@ -25,6 +26,9 @@ function SessionProvider(props) {
         if (typeof window !== 'undefined') {
             const token = localStorage.getItem('token');
             decodeJWT(token);
+        }
+        else {
+            console.log('object no data')
         }
     }, [typeof window !== 'undefined' && localStorage.getItem('token')]);
 

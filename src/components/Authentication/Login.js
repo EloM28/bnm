@@ -36,21 +36,26 @@ const Login = () => {
                             router.push("/")
                         }
                         else if (data.role === 2) {
+                            setLoading(false)
                             router.push("/")
                         }
                         else {
+                            setLoading(false)
                             router.push("/")
                         }
                     }
                     else {
+                        setLoading(false)
                         setError(data.message)
                     }
                 }
                 else {
+                    setLoading(false)
                     setError('Identification échoué réessayer:',)
                 }
             }
             else {
+                setLoading(false)
                 setError('Tous les champs doivent être completés')
             }
         } catch (error) {

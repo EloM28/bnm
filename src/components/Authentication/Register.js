@@ -13,11 +13,14 @@ const Register = () => {
     const [ConfirmPassword, setConfirmPassword] = useState('')
     const [error, setError] = useState("")
     const [epassword, setEpassword] = useState('')
+    const [errorMail, setErrorEmail] = useState('')
     const [loading, setLoading] = useState(false)
 
     const Signupbutton = async (e) => {
         e.preventDefault();
         try {
+            setEpassword("")
+            setError("")
             setLoading(true)
             if (nom && prenom && phone && email && password && role) {
                 if (ConfirmPassword !== password) {
@@ -43,21 +46,24 @@ const Register = () => {
                             role_user,
                         })
                     };
-                    console.log('object', addData)
                     const response = await fetch('/api/auth/signup', addData)
-                    console.log('object3', response)
                     const data = await response.json();
-                    console.log('object4', data.ok)
-                    console.log('object3', data.ok)
                     if (data) {
-                        if (data.ok) {
+                        if (data.message == 'Success') {
+                            setLoading(false)
                             router.push("/authentication/login");
                         }
+                        else if (data.data == 'errorMail') {
+                            setLoading(false)
+                            setErrorEmail(data.message)
+                        }
                         else {
+                            setLoading(false)
                             setError(data.message)
                         }
                     }
                     else {
+                        setLoading(false)
                         setError('Enregistrement échoué réessayer')
                     }
                 }
@@ -96,6 +102,7 @@ const Register = () => {
                             <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
                                 type="tel" name="phone" onChange={(e) => setPhone(e.target.value)} value={phone} id="username" placeholder="Entrer le numéro de téléphone" />
                         </div>
+                        <span className="text-red-600"> {errorMail} </span>
                         <div>
                             <label class="text-gray-800 font-semibold block my-3 text-md" for="email">Email</label>
                             <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"

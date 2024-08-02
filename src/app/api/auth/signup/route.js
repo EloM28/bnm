@@ -36,12 +36,11 @@ export async function POST(request) {
 
         const isUnique = await checkEmailUniqueness(email);
         if (isUnique !== 'true') {
-            res.status(402).json({ response: { data: 'errorMail', message: 'Email used.' } });
+            return new Response(JSON.stringify({ data: 'errorMail', message: 'Email used.' }));
         }
         const saltrounds = 10
         const salt = await bcrypt.genSalt(saltrounds)
         const hashedPassword = await bcrypt.hash(password, salt);
-        console.log('object', role)
         const res = await executeQuery(
             "INSERT INTO users (name,lastname,username,passcode,phone,email,role) VALUES (?, ?, ?, ?, ?, ?, ?)",
             [nom, prenom, username, hashedPassword, telephone, email, role]
@@ -49,11 +48,11 @@ export async function POST(request) {
         console.log("The insertion queryResponse:", res)
         if (res) {
             console.log('Success response data:', res)
-            return new Response({ data: res[0], message: "Success" });
+            return new Response(JSON.stringify({ data: res[0], message: "Success" }));
         }
         else {
             console.log('Error response data:', res)
-            return new Response({ message: "Erreur, ustilisateur non enregistré", response: "Nothing in response" })
+            return new Response(JSON.stringify({ message: "Erreur, ustilisateur non enregistré", response: "Nothing in response" }))
         }
     } catch (error) {
         console.error(error);
