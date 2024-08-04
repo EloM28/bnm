@@ -1,15 +1,14 @@
 'use client'
 import React, { useState } from 'react'
+import Link from 'next/link';
 
 const Login = () => {
     const { useRouter } = require('next/navigation');
     const router = useRouter()
     const [email, setEmail] = useState('')
-    const [role, setRole] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
-    const [epassword, setEpassword] = useState('')
 
     const Loginbutton = async (e) => {
         e.preventDefault();
@@ -30,6 +29,7 @@ const Login = () => {
                 if (response) {
                     const data = await response.json();
                     if (data.message === "Success") {
+                        localStorage.removeItem('token');
                         localStorage.setItem('token', data.token)
                         if (data.role === 1) {
                             setLoading(false)
@@ -66,35 +66,47 @@ const Login = () => {
     }
 
     return (
-        <div>
-            <div class="h-screen bg-indigo-100 flex justify-center items-center">
-                <div class="lg:w-2/5 md:w-1/2 w-2/3">
-                    <form class="bg-white p-10 rounded-lg shadow-lg min-w-full" action="#" method="POST">
-                        <h1 class="text-center text-2xl mb-6 text-gray-600 font-bold font-sans">Se connecter dans BNM</h1>
-                        <span className="text-red-600"> {error} </span>
-                        <div>
-                            <label class="text-gray-800 font-semibold block my-3 text-md" for="email">Email</label>
-                            <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-                                type="text" name="email" onChange={(e) => setEmail(e.target.value)} value={email} id="email" placeholder="example@gmail.com" />
-                        </div>
-                        <span className="text-red-600"> {epassword} </span>
-                        <div>
-                            <label class="text-gray-800 font-semibold block my-3 text-md" for="password">Password</label>
-                            <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-                                type="text" onChange={(e) => setPassword(e.target.value)} value={password} name="password" id="password" placeholder="password" />
-                        </div>
-                        {
-                            loading ?
-                                <button type="submit" onClick={Loginbutton} class="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">Sending...</button>
-                                :
-                                <button type="submit" onClick={Loginbutton} class="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">Login</button>
-                        }
-                        <a href='/forgetPassword'>Mot de passe oublié</a>
-                        {/* <button type="submit" class="w-full mt-6 mb-3 bg-indigo-100 rounded-lg px-4 py-2 text-lg text-gray-800 tracking-wide font-semibold font-sans">Login</button> */}
-                    </form>
+        <section className="bg-slate-700 bg-opacity-25 ">
+            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+                <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
+                    <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+                        <h1 className="md:text-xl lg:text-3xl font-bold leading-tight tracking-tight text-slate-700 md:text-2xl text-center">
+                            Se connecter dans BNM
+                        </h1>
+                        <form className="space-y-4 md:space-y-[2rem] " action="#">
+                            <span className="text-red-600"> {error} </span>
+                            <div>
+                                <input type="text" name="nom" onChange={(e) => setEmail(e.target.value)} value={email} id="nom" className="bg-white border border-slate-700 text-slate-700 rounded-lg block w-full p-2.5 focus:outline-none placeholder:text-slate-700" placeholder="votre email" required="" />
+                            </div>
+                            <div>
+                                <input type="password" onChange={(e) => setPassword(e.target.value)} value={password} name="password" id="password" placeholder="Entrer le mot de passe" className="bg-white border border-slate-700 text-slate-700 rounded-lg block w-full p-2.5 focus:outline-none placeholder:text-slate-700" required="" />
+                            </div>
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-start">
+                                    <div className="flex items-center h-5">
+                                        <input
+                                            id="remember"
+                                            aria-describedby="remember"
+                                            type="checkbox"
+                                            className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 checked:bg-slate-700"
+                                            required=""
+                                        />
+                                    </div>
+                                    {/* <div className="ml-3 text-sm">
+                                        <label for="remember" className="text-slate-700 text-md font-bold">Remember me</label>
+                                    </div> */}
+                                </div>
+                                <Link href="/authentication/forgetpassword" className="text-sm font-medium text-slate-700 hover:underline ">Forgot password?</Link>
+                            </div>
+                            {
+                                loading ? <button type="submit" className="w-full text-white bg-slate-700 hover:bg-slate-800 font-medium rounded-lg text-sm md:text-lg md:font-bold px-5 py-2.5 text-center">LOGIN...</button> :
+                                    <button onClick={Loginbutton} type="submit" className="w-full text-white bg-slate-700 hover:bg-slate-800 font-medium rounded-lg text-sm md:text-lg md:font-bold px-5 py-2.5 text-center">LOGIN</button>
+                            }
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 

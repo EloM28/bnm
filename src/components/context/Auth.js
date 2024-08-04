@@ -29,9 +29,7 @@ function SessionProvider(props) {
 
     return (
         <SessionContext.Provider
-            value={{
-                session
-            }}>
+            value={{ session: session }}>
             {props.children}
         </SessionContext.Provider>
     );

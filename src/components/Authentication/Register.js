@@ -80,66 +80,54 @@ const Register = () => {
 
     }
 
-    return (
-        <div>
-            <div class="h-screen bg-indigo-100 flex justify-center items-center">
-                <div class="lg:w-2/5 md:w-1/2 w-2/3">
-                    <form class="bg-white p-10 rounded-lg shadow-lg min-w-full" action="#" method="POST">
-                        <h1 class="text-center text-2xl mb-6 text-gray-600 font-bold font-sans">Enregistrement d'utilisateur dans BNM</h1>
-                        <span className="text-red-600"> {error} </span>
-                        <div>
-                            <label class="text-gray-800 font-semibold block my-3 text-md" for="Nom">Nom</label>
-                            <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-                                type="text" name="name" onChange={(e) => setNom(e.target.value)} value={nom} id="nom" placeholder="Entrer le nom" />
-                        </div>
-                        <div>
-                            <label class="text-gray-800 font-semibold block my-3 text-md" for="Prenom">Prénom</label>
-                            <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-                                type="text" name="lastname" onChange={(e) => setPrenom(e.target.value)} value={prenom} id="username" placeholder="Entrer le prénom" />
-                        </div>
-                        <div>
-                            <label class="text-gray-800 font-semibold block my-3 text-md" for="Tel">Téléphone</label>
-                            <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-                                type="tel" name="phone" onChange={(e) => setPhone(e.target.value)} value={phone} id="username" placeholder="Entrer le numéro de téléphone" />
-                        </div>
-                        <span className="text-red-600"> {errorMail} </span>
-                        <div>
-                            <label class="text-gray-800 font-semibold block my-3 text-md" for="email">Email</label>
-                            <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-                                type="text" name="email" onChange={(e) => setEmail(e.target.value)} value={email} id="email" placeholder="example@gmail.com" />
-                        </div>
-                        <div>
-                            <label for="role" className="text-gray-800 font-semibold block my-3 text-md">Rôle d'utilisateur</label>
-                            <select onChange={(e) => setRole(e.target.value)} value={role} className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none">
-                                <option>__Cliquer pour la sélection__</option>
-                                <option value="collaborateur">Avocat collaborateur</option>
-                                <option value="secretaire">Avocat Secrétaire</option>
-                                <option value="associes">Avocat associés</option>
-                            </select>
-                        </div>
-                        <span className="text-red-600"> {epassword} </span>
-                        <div>
-                            <label class="text-gray-800 font-semibold block my-3 text-md" for="password">Password</label>
-                            <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-                                type="text" onChange={(e) => setPassword(e.target.value)} value={password} name="password" id="password" placeholder="password" />
-                        </div>
-                        <div>
-                            <label class="text-gray-800 font-semibold block my-3 text-md" for="confirm">Confirme password</label>
-                            <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-                                type="text" onChange={(e) => setConfirmPassword(e.target.value)} value={ConfirmPassword} name="confirmPassword" id="confirm" placeholder="confirm password" />
-                        </div>{
-                            loading ?
-                                <button type="submit" onClick={Signupbutton} class="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans"> Enregistrement...</button>
-                                :
-                                <button type="submit" onClick={Signupbutton} class="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">Enregistrer</button>
-                        }
 
-                        {/* <button type="submit" class="w-full mt-6 mb-3 bg-indigo-100 rounded-lg px-4 py-2 text-lg text-gray-800 tracking-wide font-semibold font-sans">Login</button> */}
-                    </form>
+    return (
+        <section className="bg-slate-700 bg-opacity-25 ">
+            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+                <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
+                    <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+                        <h1 className="md:text-xl lg:text-3xl font-bold leading-tight tracking-tight text-slate-700 md:text-2xl text-center">
+                            Enregistrement d'utilisateur dans BNM
+                        </h1>
+                        <form className="space-y-4 md:space-y-[2.5rem] " action="#">
+                            <span className="text-red-600"> {error} </span>
+                            <div>
+                                <input type="text" onChange={(e) => setNom(e.target.value)} value={nom} name="nom" id="nom" className="bg-white border border-slate-700 text-slate-700 rounded-lg block w-full p-2.5 focus:outline-none placeholder:text-slate-700" placeholder="votre email" required="" />
+                            </div>
+                            <div>
+                                <input type="text" onChange={(e) => setPrenom(e.target.value)} value={prenom} name="prenom" id="prenom" className="bg-white border border-slate-700 text-slate-700 rounded-lg block w-full p-2.5 focus:outline-none placeholder:text-slate-700" placeholder="votre email" required="" />
+                            </div>
+                            <div>
+                                <input type="tel" onChange={(e) => setPhone(e.target.value)} value={phone} name="phone" id="phone" className="bg-white border border-slate-700 text-slate-700 rounded-lg block w-full p-2.5 focus:outline-none placeholder:text-slate-700" placeholder="votre email" required="" />
+                            </div>
+                            <div>
+                                <input type="email" onChange={(e) => setEmail(e.target.value)} value={email} name="email" id="email" className="bg-white border border-slate-700 text-slate-700 rounded-lg block w-full p-2.5 focus:outline-none placeholder:text-slate-700" placeholder="votre email" required="" />
+                            </div>
+                            <div>
+                                <label for="role" className="text-gray-800 font-semibold block my-3 text-md">Rôle d'utilisateur</label>
+                                <select onChange={(e) => setRole(e.target.value)} value={role} className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none">
+                                    <option>__Cliquer pour la sélection__</option>
+                                    <option value="collaborateur">Avocat collaborateur</option>
+                                    <option value="secretaire">Avocat Secrétaire</option>
+                                    <option value="associes">Avocat associés</option>
+                                </select>
+                            </div>
+                            <span className="text-red-600"> {epassword} </span>
+                            <div>
+                                <input type="password" name="password" onChange={(e) => setPassword(e.target.value)} value={password} id="password" placeholder="Entrer le mot de passe" className="bg-white border border-slate-700 text-slate-700 rounded-lg block w-full p-2.5 focus:outline-none placeholder:text-slate-700" required="" />
+                            </div>
+                            <div>
+                                <input type="password" name="password" onChange={(e) => setConfirmPassword(e.target.value)} value={ConfirmPassword} id="password" placeholder="Confirme le mot de passe" className="bg-white border border-slate-700 text-slate-700 rounded-lg block w-full p-2.5 focus:outline-none placeholder:text-slate-700" required="" />
+                            </div>
+                            {
+                                loading ?
+                                    <button type="submit" onClick={Signupbutton} className="w-full text-white bg-slate-700 hover:bg-slate-800 font-medium rounded-lg text-sm md:text-lg md:font-bold px-5 py-2.5 text-center">Enregistrement...</button> :
+                                    <button type="submit" onClick={Signupbutton} className="w-full text-white bg-slate-700 hover:bg-slate-800 font-medium rounded-lg text-sm md:text-lg md:font-bold px-5 py-2.5 text-center">Enregistrer</button>}
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
-
 export default Register

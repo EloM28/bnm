@@ -11,7 +11,7 @@ export async function POST(request) {
             const result = await executeQuery('SELECT * FROM users WHERE (email=?) ', (email))
             // Vérifier les informations d'identification de l'utilisateur
             if (result.length === 0) {
-                return Response.json({ message: 'Email introuvable' });
+                return new Response(JSON.stringify({ message: 'Email introuvable' }));
             }
             const isMatch = await bcrypt.compare(motdepasse, result[0].passcode)
             if (isMatch) {
@@ -41,12 +41,12 @@ export async function POST(request) {
             }
             else {
                 console.log('Password incorrect')
-                return Response.json({ message: 'Password incorrect' });
+                return new Response(JSON.stringify({ message: 'Password incorrect' }));
             }
         }
     }
     catch (error) {
         console.log('Try error', error)
-        return Response.json({ message: 'validation error' });
+        return new Response(JSON.stringify({ message: 'validation error' }));
     }
 }

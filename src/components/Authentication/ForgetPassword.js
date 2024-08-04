@@ -11,10 +11,12 @@ const ForgetPassword = () => {
 
     const Forgetbutton = async (e) => {
         e.preventDefault();
+        setLoading(false)
         try {
+            setError(false)
             setLoading(true)
             if (email) {
-                const data = {
+                const dataSend = {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -23,11 +25,14 @@ const ForgetPassword = () => {
                         email,
                     })
                 };
-                const response = await fetch('/api/auth/forgetpassword', data)
+                const response = await fetch('/api/auth/forgetpassword', dataSend)
+
+                console.log('forgetpass', response)
                 if (response) {
                     const data = await response.json();
                     if (data.message === "Success") {
-                        router.push('/waitchngpass')
+                        setLoading(false)
+                        router.push('/authentication/waitchngpass')
                     }
                     else {
                         setLoading(false)
@@ -45,7 +50,7 @@ const ForgetPassword = () => {
             }
         } catch (error) {
             setLoading(false)
-            setError('an error occured')
+            setError('Erreur réseau veuillez réessayer')
         }
 
     }
@@ -62,15 +67,14 @@ const ForgetPassword = () => {
                             <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
                                 type="text" name="email" onChange={(e) => setEmail(e.target.value)} value={email} id="email" placeholder="example@gmail.com" />
                         </div>
-                        <span className="text-red-600"> {errorMail} </span>
                         {
                             loading ?
-                                <button type="submit" onClick={Forgetbutton} class="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">Sending...</button>
+                                <button type="submit" onClick={Forgetbutton} class="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">Envoie...</button>
                                 :
-                                <button type="submit" onClick={Forgetbutton} class="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">Login</button>
+                                <button type="submit" onClick={Forgetbutton} class="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">Envoyer</button>
                         }
                         <div className="pt-6 text-base leading-6  sm:text-sm sm:leading-7">
-                            <p>Returner sur   <Link href="/authentication/login" className="text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">Log in !</Link></p>
+                            <p>Retourner sur   <a href="/authentication/login" className="text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">Log in !</a></p>
                         </div>
                     </form>
                 </div>

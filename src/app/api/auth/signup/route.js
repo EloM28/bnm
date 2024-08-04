@@ -56,6 +56,6 @@ export async function POST(request) {
         }
     } catch (error) {
         console.error(error);
-        return new Response("Error server")
+        return new Response(JSON.stringify({ message: "Error réseau veuillez réessayer" }))
     }
 }
