@@ -63,15 +63,15 @@ const ForgetPassword = () => {
                         <h1 class="text-center text-2xl mb-6 text-gray-600 font-bold font-sans">Changer le mot de Passe</h1>
                         <span className="text-red-600"> {error} </span>
                         <div>
-                            <label class="text-gray-800 font-semibold block my-3 text-md" for="email">Email</label>
-                            <input class="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
+                            <label class="text-gray-800 font-semibold block my-1 text-md" for="email">Entrer votre Adresse email</label>
+                            <input class="w-full bg-gray-100 px-4 py-4bg-white border border-slate-700 text-slate-700 rounded-lg block w-full p-2.5 focus:outline-none placeholder:text-slate-700 rounded-lg my-6 focus:outline-none"
                                 type="text" name="email" onChange={(e) => setEmail(e.target.value)} value={email} id="email" placeholder="example@gmail.com" />
                         </div>
                         {
                             loading ?
-                                <button type="submit" onClick={Forgetbutton} class="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">Envoie...</button>
+                                <button type="submit" onClick={Forgetbutton} class="w-full text-white bg-slate-700 hover:bg-slate-800 font-medium rounded-lg text-sm md:text-lg md:font-bold px-5 py-2.5 text-center">Envoie...</button>
                                 :
-                                <button type="submit" onClick={Forgetbutton} class="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">Envoyer</button>
+                                <button type="submit" onClick={Forgetbutton} class="w-full text-white bg-slate-700 hover:bg-slate-800 font-medium rounded-lg text-sm md:text-lg md:font-bold px-5 py-2.5 text-center">Envoyer</button>
                         }
                         <div className="pt-6 text-base leading-6  sm:text-sm sm:leading-7">
                             <p>Retourner sur   <a href="/authentication/login" className="text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">Log in !</a></p>

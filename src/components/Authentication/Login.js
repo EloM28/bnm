@@ -83,7 +83,7 @@ const Login = () => {
                             </div>
                             <div className="flex items-center justify-between">
                                 <div className="flex items-start">
-                                    <div className="flex items-center h-5">
+                                    {/* <div className="flex items-center h-5">
                                         <input
                                             id="remember"
                                             aria-describedby="remember"
@@ -92,7 +92,7 @@ const Login = () => {
                                             required=""
                                         />
                                     </div>
-                                    {/* <div className="ml-3 text-sm">
+                                    <div className="ml-3 text-sm">
                                         <label for="remember" className="text-slate-700 text-md font-bold">Remember me</label>
                                     </div> */}
                                 </div>
@@ -105,8 +105,8 @@ const Login = () => {
                         </form>
                     </div>
                 </div>
-            </div>
-        </section>
+            </div >
+        </section >
     )
 }
 

@@ -59,7 +59,7 @@ function ResetPass(mail) {
                                                 Nouveau mot de passe
                                             </label>
                                             <input name="password" className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email"
-                                                type="password" placeholder="enter your new Password" value={password} onChange={e => { setPassword(e.target.value) }} />
+                                                type="password" placeholder="entrer le nouveau mot de passe" value={password} onChange={e => { setPassword(e.target.value) }} />
                                             <span className="text-red-600"> {errpass} </span>
 
                                         </div>
@@ -68,10 +68,10 @@ function ResetPass(mail) {
                                                 Confirmer le mot de passe
                                             </label>
                                             <input name="cpassword" className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email"
-                                                type="password" placeholder="Confirm your Password" value={cpassword} onChange={e => { setCPassword(e.target.value) }} />
+                                                type="password" placeholder="Confirmer votre mot de passe" value={cpassword} onChange={e => { setCPassword(e.target.value) }} />
                                         </div>
                                         <div className="mb-6">
-                                            <button name="changemod" onClick={changPassWord} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                                            <button name="changemod" onClick={changPassWord} className="w-full text-white bg-slate-700 hover:bg-slate-800 font-medium rounded-lg text-sm md:text-lg md:font-bold px-5 py-2.5 text-center" type="submit">
                                                 Reset Now
                                             </button>
                                         </div>
