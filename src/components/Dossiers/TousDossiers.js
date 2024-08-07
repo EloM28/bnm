@@ -26,8 +26,7 @@ const TousDossiers = () => {
   const [showCreateReturnBack, setShowCreateReturnBack] = useState(false)
   const [showBalance, setShowBalance] = useState(false)
   const [showDetailToutLeDossier, setShowDetailToutLeDossier] = useState(false)
-  const [dossiers, setDossiers] = useState(null)
-  const [error, setError] = useState('')
+  const [data, setData] = useState([])
 
 
   const handleEditClick = () => {
@@ -85,18 +84,24 @@ const TousDossiers = () => {
   const closeModalDetail = () => {
     setShowDetailToutLeDossier(false)
   }
-  const get_dossier = async () => {
-    const res = await fetch('api/dossier/get_dossier')
-    if (res.message == "Success") {
-      setDossiers(res.data)
-    }
-    else {
-      setError('no data')
-    }
-  }
+
   useEffect(() => {
-    get_dossier()
-  }, [])
+    const fetchData = async () => {
+      const res = await fetch('/api/dossier/liste');
+      const data = await res.json()
+      if (data.message == 'Success') {
+        console.log('folder', data)
+        setData(data.data)
+      }
+      else {
+        setData([])
+      }
+
+    };
+
+    fetchData();
+
+  }, []);
 
   return (
     <div className='w-full h-auto bg-white rounded-md'>
@@ -134,22 +139,20 @@ const TousDossiers = () => {
       </div>
       <div className="flex flex-col">
         <div className="">
-          {error ?
-            <p>Pas de dossiers</p>
-            :
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
-              <thead>
-                <tr>
-                  <th scope="col" className="px-6 py-3 w-2 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"></th>
-                  <th scope="col" className="px-6 py-3 text-start text-md font-semibold text-slate-700 uppercase">No</th>
-                  <th scope="col" className="px-6 py-3 text-start text-md font-semibold text-slate-700 uppercase">No dossier</th>
-                  <th scope="col" className="px-6 py-3 text-start text-md font-semibold text-slate-700 uppercase">Demandeur</th>
-                  <th scope="col" className="px-6 py-3 text-start text-md font-semibold text-slate-700 uppercase">Defendeur</th>
-                  <th scope="col" className="px-6 py-3 text-start text-md font-semibold text-slate-700 uppercase">Tribunal</th>
-                  <th scope="col" className="px-6 py-3 text-start text-md font-semibold text-slate-700 uppercase">Audience</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 dark:divide-neutral-700">
+          <table className="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
+            <thead>
+              <tr>
+                <th scope="col" className="px-6 py-3 w-2 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500"></th>
+                <th scope="col" className="px-6 py-3 text-start text-md font-semibold text-slate-700 uppercase">No</th>
+                <th scope="col" className="px-6 py-3 text-start text-md font-semibold text-slate-700 uppercase">No dossier</th>
+                <th scope="col" className="px-6 py-3 text-start text-md font-semibold text-slate-700 uppercase">Demandeur</th>
+                <th scope="col" className="px-6 py-3 text-start text-md font-semibold text-slate-700 uppercase">Defendeur</th>
+                <th scope="col" className="px-6 py-3 text-start text-md font-semibold text-slate-700 uppercase">Tribunal</th>
+                <th scope="col" className="px-6 py-3 text-start text-md font-semibold text-slate-700 uppercase">Audience</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 dark:divide-neutral-700">
+              {data && data.map((item) => (
                 <tr className='border-b border-slate-700'>
                   <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                     <Tooltip showArrow={true} content={<DetailsDossiersSecretaire
@@ -171,16 +174,17 @@ const TousDossiers = () => {
                       </button>
                     </Tooltip>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap font-semibold text-md text-slate-700">1</td>
-                  <td className="px-6 py-4 whitespace-nowrap font-semibold text-md text-slate-700">45</td>
-                  <td className="px-6 py-4 whitespace-nowrap font-semibold text-md text-slate-700">NZISABIRA</td>
-                  <td className="px-6 py-4 whitespace-nowrap font-semibold text-md text-slate-700">BUYENGERO</td>
-                  <td className="px-6 py-4 whitespace-nowrap font-semibold text-md text-slate-700">GIKUNGU</td>
-                  <td className="px-6 py-4 whitespace-nowrap font-semibold text-md text-slate-700">21 septembre 2024</td>
+                  <td className="px-6 py-4 whitespace-nowrap font-semibold text-md text-slate-700">{item.id_grand}</td>
+                  <td className="px-6 py-4 whitespace-nowrap font-semibold text-md text-slate-700">{item.numero}</td>
+                  <td className="px-6 py-4 whitespace-nowrap font-semibold text-md text-slate-700">{item.demandeur}</td>
+                  <td className="px-6 py-4 whitespace-nowrap font-semibold text-md text-slate-700">{item.defendeur}</td>
+                  <td className="px-6 py-4 whitespace-nowrap font-semibold text-md text-slate-700">{item.tribunal}</td>
+                  <td className="px-6 py-4 whitespace-nowrap font-semibold text-md text-slate-700">{item.date_audience}</td>
                 </tr>
-              </tbody>
-            </table>
-          }
+              ))
+              }
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
