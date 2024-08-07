@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { useState } from 'react';
-import { Sidebar, Menu, MenuItem, SubMenu} from 'react-pro-sidebar';
+import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaFolder } from 'react-icons/fa';
@@ -18,10 +18,10 @@ import { FaBars } from 'react-icons/fa';
 const SideBar = () => {
 
     const [toggled, setToggled] = React.useState(false);
-    
-  return (
-          <div style={{ display: 'flex', height: '100vh', minHeight: '400px',width:'100vh'}}>
-            <Sidebar  onBackdropClick={() => setToggled(false)} toggled={toggled} breakPoint="md">
+
+    return (
+        <div style={{ display: 'flex', height: '100vh', minHeight: '400px', width: '100vh' }}>
+            <Sidebar onBackdropClick={() => setToggled(false)} toggled={toggled} breakPoint="md">
                 {/*
                     <div className='flex flex-col h-[12rem] w-full mt-3 mx-auto bg-green-600'>
                     <Link href="" className='w-full h-full mx-auto rounded-full'>
@@ -63,46 +63,48 @@ const SideBar = () => {
                 </div>*/}
                 <Menu>
                     <div className='border rounded-md'>
-                    <MenuItem icon={<FaHome/>} className='text-slate-700 text-md font-bold'> Home </MenuItem>
+                        <MenuItem icon={<FaHome />} className='text-slate-700 text-md font-bold'> Home </MenuItem>
                     </div>
                     <div className='border rounded-md'>
-                    <SubMenu icon={<FaFolder/>} label="Dossiers">
-                        <MenuItem icon={<FaFolder/>} component={<Link href="/Secretaire/Dossier" />}> dossiers standards </MenuItem>
-                    </SubMenu>
+                        <SubMenu icon={<FaFolder />} label="Dossiers">
+                            <MenuItem icon={<FaFolder />} component={<Link href="/Secretaire/Dossier" />}> dossiers standards </MenuItem>
+                            <MenuItem icon={<FaFolder />} component={<Link href="/Secretaire/Dossier" />}> dossiers structurés </MenuItem>
+                        </SubMenu>
                     </div>
                     <div className='border rounded-md'>
-                    <SubMenu icon={<FaUser/>} label="Clients ">
-                        <MenuItem icon={<FaUser/>} component={<Link href="/Secretaire/Clients" />}> clients structures </MenuItem>
-                    </SubMenu>
+                        <SubMenu icon={<FaUser />} label="Clients ">
+                            <MenuItem icon={<FaUser />} component={<Link href="/Secretaire/Clients/Structures" />}> clients structurés </MenuItem>
+                            <MenuItem icon={<FaUser />} component={<Link href="/Secretaire/Clients/Standards" />}> clients standard </MenuItem>
+                        </SubMenu>
                     </div>
                     <div className='border rounded-md'>
-                            <MenuItem icon={<FaStickyNote/>} component={<Link href="/Secretaire/Ecritures"/>} className='text-slate-700 text-md font-bold'> Ecritures </MenuItem>
+                        <MenuItem icon={<FaStickyNote />} component={<Link href="/Secretaire/Ecritures" />} className='text-slate-700 text-md font-bold'> Ecritures </MenuItem>
                     </div>
                     <div className='border rounded-md'>
-                            <MenuItem icon={<FaFileInvoiceDollar/>} component={<Link href="/Secretaire/Caisses"/>}  className='text-slate-700 text-md font-bold'> Caisses </MenuItem>
+                        <MenuItem icon={<FaFileInvoiceDollar />} component={<Link href="/Secretaire/Caisses" />} className='text-slate-700 text-md font-bold'> Caisses </MenuItem>
                     </div>
                     <div className='border rounded-md'>
-                            <MenuItem icon={<FaFile />} component={<Link href="/Secretaire/RapportSecretaire"/>} className='text-slate-700 text-md font-bold'> Rapport </MenuItem>
+                        <MenuItem icon={<FaFile />} component={<Link href="/Secretaire/RapportSecretaire" />} className='text-slate-700 text-md font-bold'> Rapport </MenuItem>
                     </div>
                     <div className='border rounded-md'>
-                            <MenuItem icon={<FaCodeBranch/>} className='text-slate-700 text-md font-bold'> Condensé </MenuItem>
+                        <MenuItem icon={<FaCodeBranch />} className='text-slate-700 text-md font-bold'> Condensé </MenuItem>
                     </div>
                     <div className='border rounded-md'>
-                            <MenuItem icon={<FaStopwatch/>} component={<Link href="/Secretaire/DemandeCong"/>} className='text-slate-700 text-md font-bold'> Demande De Congé </MenuItem>
-                    </div>                                
+                        <MenuItem icon={<FaStopwatch />} component={<Link href="/Secretaire/DemandeCong" />} className='text-slate-700 text-md font-bold'> Demande De Congé </MenuItem>
+                    </div>
                 </Menu>
             </Sidebar>
             <main style={{ display: 'flex', padding: 10 }}>
                 <div>
                     <div className='block md:hidden'>
                         <button className="sb-button" onClick={() => setToggled(!toggled)}>
-                            <FaBars/>
+                            <FaBars />
                         </button>
                     </div>
                 </div>
             </main>
         </div>
-  )
+    )
 }
 
 export default SideBar

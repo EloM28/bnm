@@ -90,7 +90,6 @@ const TousDossiers = () => {
       const res = await fetch('/api/dossier/liste');
       const data = await res.json()
       if (data.message == 'Success') {
-        console.log('folder', data)
         setData(data.data)
       }
       else {

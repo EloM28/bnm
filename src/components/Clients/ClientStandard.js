@@ -7,7 +7,7 @@ const TousClients = () => {
     const [data, setData] = useState([])
     useEffect(() => {
         const fetchData = async () => {
-            const res = await fetch('/api/clients/liste/');
+            const res = await fetch('/api/clients/standard/');
             console.log('lol', res)
             const data = await res.json()
             console.log(data)
