@@ -1,8 +1,9 @@
+import { cookies } from 'next/headers'
 export async function POST(request) {
     try {
         if (request.method == 'POST') {
             const response = new Response(JSON.stringify({ message: "Success" }));
-            response.cookies.delete('token');
+            cookies().delete('token')
             return response;
 
         }

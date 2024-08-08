@@ -22,30 +22,30 @@ const SideBar = () => {
     const router = useRouter()
 
     const handleLogout = async () => {
-        localStorage.removeItem('token');
-        document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        router.push('/authentication/login');
-        // const data = {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({})
-        // };
-        // const response = await fetch('/api/auth/logout', data)
-        // if (response) {
-        //     const data = await response.json();
-        //     if (data.message === "Success") {
-        //         // Supprimer le token du localStorage
-        //         localStorage.removeItem('token');
+        // localStorage.removeItem('token');
+        // document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        // router.push('/authentication/login');
+        const data = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({})
+        };
+        const response = await fetch('/api/auth/logout', data)
+        if (response) {
+            const data = await response.json();
+            if (data.message === "Success") {
+                // Supprimer le token du localStorage
+                localStorage.removeItem('token');
 
-        //         router.push('/authentication/login');
-        //     }
-        // }
-        // else {
-        //     console.log('Error')
-        //     setError('Erreur de se déconnecter')
-        // }
+                router.push('/authentication/login');
+            }
+        }
+        else {
+            console.log('Error')
+            setError('Erreur de se déconnecter')
+        }
 
         // Supprimer le cookie (ajuster le nom du cookie en fonction de votre configuration
         // document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
