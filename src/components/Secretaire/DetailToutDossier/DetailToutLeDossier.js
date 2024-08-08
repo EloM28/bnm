@@ -18,19 +18,18 @@ const DetailToutLeDossier = ({closeModal,closeModalDetail}) => {
     }
 
   return (
-            <div className='relative mx-auto w-[100%] h-screen flex items-center bg-slate-700 bg-opacity-50 justify-center'>
+            <div className='relative w-[90%] h-[60rem]  bg-slate-700 bg-opacity-50 z-100'>
                 <div className='absolute z-100 w-full'>
                     {
                         showTracabiliteDossier ? <TracabiliteDossier closeModal={closeModal}/> : ""
                     }
                 </div>
-                <div className='relative w-[70%] h-auto bg-white rounded-tl-md rounded-tr-xl'>
+                <div className='relative w-[70%] mx-auto h-auto bg-white rounded-tl-md rounded-tr-xl'>
                     <Tooltip showArrow={true} content="tracabilite du dossier" className='bg-slate-700 text-white text-sm h-7 rounded-md max-w mx-1'>
                         <button onClick={handleTracabiliteDossier} className='absolute w-[2.5rem] h-[2rem] bg-slate-200 rounded-sm hover:bg-slate-300 mt-3 right-[8rem]'>
                           <FaRoad className='w-full h-full'/>
                         </button>
                     </Tooltip>
-                    
                     <button onClick={closeModalDetail} className='absolute w-6 h-6 bg-slate-700 hover:bg-slate-800 rounded-full right-0'>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 text-lg text-white">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />

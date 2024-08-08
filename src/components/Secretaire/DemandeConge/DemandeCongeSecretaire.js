@@ -4,7 +4,7 @@ import React from 'react'
 const DemandeCongeSecretaire = () => {
   return (
       <div className='mx-auto w-[100%] h-full flex items-center bg-blue-100 justify-center'>
-        <div className='w-[30%] h-[92%] flex flex-col space-y-4 bg-white rounded-md rounded-tr-2xl'>
+        <div className='w-[95%] lg:w-[30%] h-[92%] flex flex-col space-y-4 bg-white rounded-md rounded-tr-2xl'>
             <div className='w-[78%] h-full flex flex-col space-y-4 mx-auto mt-2'>
                 <div className='flex flex-col space-y-2 w-full'>
                     <label htmlFor="first_name" className="text-xl font-medium text-slate-700">Sortie</label>
