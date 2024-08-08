@@ -1,7 +1,7 @@
 import executeQuery from '@/Config/db';
 export async function GET(request) {
     try {
-        const result1 = await executeQuery('SELECT COUNT(*) as count_client FROM client WHERE delete_user>0', [])
+        const result1 = await executeQuery('SELECT COUNT(*) as count_client FROM client', [])
         const result2 = await executeQuery('SELECT COUNT(*) as count_dossiers FROM dossiers', []);
         const result3 = await executeQuery('SELECT COUNT(*) as count_standards FROM dossiers', []);
         const result4 = await executeQuery('SELECT COUNT(*) as count_report FROM rapport_daily', []);

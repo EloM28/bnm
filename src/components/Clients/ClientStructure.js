@@ -3,7 +3,7 @@ import { React, useState, useEffect } from 'react'
 import { Tooltip } from '@nextui-org/react';
 import DetailsClientSecretaire from '../DetailClient/DetailsClientSecretaire';
 
-const TousClients = () => {
+const ClientStructure = () => {
     const [data, setData] = useState([])
     useEffect(() => {
         const fetchData = async () => {
@@ -68,4 +68,4 @@ const TousClients = () => {
     )
 }
 
-export default TousClients
+export default ClientStructure

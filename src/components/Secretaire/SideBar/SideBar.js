@@ -67,8 +67,8 @@ const SideBar = () => {
                     </div>
                     <div className='border rounded-md'>
                         <SubMenu icon={<FaFolder />} label="Dossiers">
-                            <MenuItem icon={<FaFolder />} component={<Link href="/Secretaire/Dossier" />}> dossiers standards </MenuItem>
-                            <MenuItem icon={<FaFolder />} component={<Link href="/Secretaire/Dossier" />}> dossiers structurés </MenuItem>
+                            <MenuItem icon={<FaFolder />} component={<Link href="/Secretaire/Dossier/Standard" />}> dossiers standards </MenuItem>
+                            <MenuItem icon={<FaFolder />} component={<Link href="/Secretaire/Dossier/Structure" />}> dossiers structurés </MenuItem>
                         </SubMenu>
                     </div>
                     <div className='border rounded-md'>
