@@ -26,5 +26,5 @@ export async function middleware(request) {
 }
 
 export const config = {
-    matcher: ['/']
+    matcher: '/((?!api|static|_next|authentication).*)',
 }

@@ -18,6 +18,41 @@ import { FaBars } from 'react-icons/fa';
 const SideBar = () => {
 
     const [toggled, setToggled] = React.useState(false);
+    const { useRouter } = require('next/navigation');
+    const router = useRouter()
+
+    const handleLogout = async () => {
+        localStorage.removeItem('token');
+        document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        router.push('/authentication/login');
+        // const data = {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({})
+        // };
+        // const response = await fetch('/api/auth/logout', data)
+        // if (response) {
+        //     const data = await response.json();
+        //     if (data.message === "Success") {
+        //         // Supprimer le token du localStorage
+        //         localStorage.removeItem('token');
+
+        //         router.push('/authentication/login');
+        //     }
+        // }
+        // else {
+        //     console.log('Error')
+        //     setError('Erreur de se déconnecter')
+        // }
+
+        // Supprimer le cookie (ajuster le nom du cookie en fonction de votre configuration
+        // document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        // Cookies.remove('token');
+
+        // Rediriger vers la page de connexion
+    };
 
     return (
         <div style={{ display: 'flex', height: '100vh', minHeight: '400px', width: '100vh' }}>
@@ -91,6 +126,12 @@ const SideBar = () => {
                     </div>
                     <div className='border rounded-md'>
                         <MenuItem icon={<FaStopwatch />} component={<Link href="/Secretaire/DemandeCong" />} className='text-slate-700 text-md font-bold'> Demande De Congé </MenuItem>
+                    </div>
+                    <div className='border rounded-md'>
+                        <SubMenu icon={<FaUser />} label="Settings ">
+                            <MenuItem icon={<FaUser />} component={<Link href="/authentication/forgetpassword" />}> Changer le mot de passe </MenuItem>
+                            <MenuItem icon={<FaUser />} onClick={handleLogout}> Se déconnecter </MenuItem>
+                        </SubMenu>
                     </div>
                 </Menu>
             </Sidebar>

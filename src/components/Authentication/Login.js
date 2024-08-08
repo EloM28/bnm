@@ -33,7 +33,7 @@ const Login = () => {
                         localStorage.setItem('token', data.token)
                         if (data.role === 1) {
                             setLoading(false)
-                            router.push("/")
+                            router.push("/Secretaire/Dossier")
                         }
                         else if (data.role === 2) {
                             setLoading(false)
@@ -102,6 +102,12 @@ const Login = () => {
                                 loading ? <button type="submit" className="w-full text-white bg-slate-700 hover:bg-slate-800 font-medium rounded-lg text-sm md:text-lg md:font-bold px-5 py-2.5 text-center">LOGIN...</button> :
                                     <button onClick={Loginbutton} type="submit" className="w-full text-white bg-slate-700 hover:bg-slate-800 font-medium rounded-lg text-sm md:text-lg md:font-bold px-5 py-2.5 text-center">LOGIN</button>
                             }
+                            <div className='flex space-x-4'>
+                                <p className="text-md font-light text-slate-700">
+                                    Don’t have an account yet?
+                                </p>
+                                <Link href="/authentication/register" className="font-medium text-lg text-slate-700 hover:underline ">S'enregistrer</Link>
+                            </div>
                         </form>
                     </div>
                 </div>
